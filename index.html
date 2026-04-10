@@ -5,34 +5,112 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Here's your Perfect - My Links</title>
     <style>
+        /* 基础样式重置 */
         body, html {
-            margin: 0; padding: 0;
-            font-family: -apple-system, sans-serif;
-            background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
-            display: flex; justify-content: center; min-height: 100vh;
+            margin: 0;
+            padding: 0;
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+            background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%); /* 渐变背景 */
+            color: #333;
+            display: flex;
+            justify-content: center;
+            min-height: 100vh;
         }
-        .container { width: 100%; max-width: 480px; padding: 40px 20px; text-align: center; }
-        .profile-img { width: 96px; height: 96px; border-radius: 50%; border: 3px solid #fff; box-shadow: 0 4px 10px rgba(0,0,0,0.1); }
-        .links-container { display: flex; flex-direction: column; gap: 16px; margin-top: 30px; }
+
+        .container {
+            width: 100%;
+            max-width: 480px;
+            padding: 40px 20px;
+            text-align: center;
+        }
+
+        /* 个人信息部分 */
+        .profile-img {
+            width: 96px;
+            height: 96px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 3px solid #fff;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+        }
+
+        h1 {
+            font-size: 1.2rem;
+            margin: 15px 0 5px;
+            font-weight: 600;
+        }
+
+        /* 简介部分 */
+        p.bio {
+            font-size: 0.9rem;
+            color: #666;
+            margin-bottom: 30px;
+        }
+
+        /* 按钮列表部分 */
+        .links-container {
+            display: flex;
+            flex-direction: column;
+            gap: 16px;
+        }
+
         .link-card {
-            background: #fff; color: #333; text-decoration: none; padding: 16px;
-            border-radius: 12px; font-weight: 500; transition: 0.2s;
+            background-color: #fff;
+            color: #333;
+            text-decoration: none;
+            padding: 16px;
+            border-radius: 12px;
+            font-weight: 500;
+            transition: transform 0.2s, box-shadow 0.2s;
             box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+            border: 1px solid rgba(0,0,0,0.05);
         }
-        .link-card:hover { transform: translateY(-2px); box-shadow: 0 4px 12px rgba(0,0,0,0.1); }
-        .featured { background: #333; color: #fff; }
+
+        .link-card:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+            background-color: #fafafa;
+        }
+
+        /* ✅ 核心修改：主打按钮改为紫色背景 */
+        .featured {
+            background-color: #7b2cbf; /* 深紫色 */
+            color: #fff;
+        }
+        .featured:hover {
+            background-color: #6a1b9a; /* 悬停时更深一些 */
+            color: #fff;
+        }
+
+        /* 页脚图标 */
+        .footer-socials {
+            margin-top: 40px;
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            font-size: 1.5rem;
+        }
     </style>
 </head>
 <body>
+
     <div class="container">
         <img src="https://via.placeholder.com/150" alt="Avatar" class="profile-img">
         <h1>My Links</h1>
-        <p>Here's your Perfect ✨</p>
+        
+        <p class="bio">解决真实需求 ✨</p>
+
         <div class="links-container">
-            <a href="#" class="link-card featured">🎵 Listen to "Here's your Perfect"</a>
+            <a href="#" class="link-card featured">❤ 许愿池</a>
+            
             <a href="https://reddit.com" class="link-card">💬 Reddit Community</a>
             <a href="#" class="link-card">📺 YouTube Channel</a>
         </div>
+
+        <div style="margin-top: 50px; font-size: 0.8rem; color: #888;">
+            © 2026 Your Brand
+        </div>
     </div>
+
 </body>
 </html>

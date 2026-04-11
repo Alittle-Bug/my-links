@@ -5,105 +5,62 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Here's your Perfect - My Links</title>
     <style>
-        /* 基础样式重置 */
+        /* 基础样式 */
         body, html {
-            margin: 0;
-            padding: 0;
+            margin: 0; padding: 0;
             font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
-            background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%); /* 渐变背景 */
-            color: #333;
-            display: flex;
-            justify-content: center;
-            min-height: 100vh;
+            background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+            color: #333; display: flex; justify-content: center; min-height: 100vh;
         }
-
-        .container {
-            width: 100%;
-            max-width: 480px;
-            padding: 40px 20px;
-            text-align: center;
-        }
-
-        /* 个人信息部分 */
-        .profile-img {
-            width: 96px;
-            height: 96px;
-            border-radius: 50%;
-            object-fit: cover;
-            border: 3px solid #fff;
-            box-shadow: 0 4px 10px rgba(0,0,0,0.1);
-        }
-
-        h1 {
-            font-size: 1.2rem;
-            margin: 15px 0 5px;
-            font-weight: 600;
-        }
-
-        /* 简介部分 */
-        p.bio {
-            font-size: 0.9rem;
-            color: #666;
-            margin-bottom: 30px;
-        }
-
-        /* 按钮列表部分 */
-        .links-container {
-            display: flex;
-            flex-direction: column;
-            gap: 16px;
-        }
-
+        .container { width: 100%; max-width: 480px; padding: 40px 20px; text-align: center; }
+        .profile-img { width: 96px; height: 96px; border-radius: 50%; object-fit: cover; border: 3px solid #fff; box-shadow: 0 4px 10px rgba(0,0,0,0.1); }
+        h1 { font-size: 1.2rem; margin: 15px 0 5px; font-weight: 600; }
+        p.bio { font-size: 0.9rem; color: #666; margin-bottom: 30px; }
+        .links-container { display: flex; flex-direction: column; gap: 16px; }
+        
+        /* 按钮通用样式 */
         .link-card {
-            background-color: #fff;
-            color: #333;
-            text-decoration: none;
-            padding: 16px;
-            border-radius: 12px;
-            font-weight: 500;
-            transition: transform 0.2s, box-shadow 0.2s;
-            box-shadow: 0 2px 8px rgba(0,0,0,0.05);
-            border: 1px solid rgba(0,0,0,0.05);
+            background-color: #fff; color: #333; text-decoration: none; padding: 16px;
+            border-radius: 12px; font-weight: 500; transition: transform 0.2s, box-shadow 0.2s;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.05); border: 1px solid rgba(0,0,0,0.05);
+            cursor: pointer;
         }
+        .link-card:hover { transform: translateY(-2px); box-shadow: 0 4px 12px rgba(0,0,0,0.1); }
 
-        .link-card:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
-            background-color: #fafafa;
-        }
+        /* 紫色主打按钮（许愿池） */
+        .featured { background-color: #7b2cbf; color: #fff; }
+        .featured:hover { background-color: #6a1b9a; color: #fff; }
 
-        /* 主打按钮（许愿池）紫色背景 */
-        .featured {
-            background-color: #7b2cbf; /* 深紫色 */
-            color: #fff;
-        }
-        .featured:hover {
-            background-color: #6a1b9a; /* 悬停时更深一些 */
-            color: #fff;
-        }
+        /* ✅ 交易按钮：改为稳重的深青绿色 */
+        .trade-btn { background-color: #2a9d8f; color: #fff; border: none; font-size: 16px; width: 100%; }
+        .trade-btn:hover { background-color: #21867a; }
 
-        /* 页脚图标 */
-        .footer-socials {
-            margin-top: 40px;
-            display: flex;
-            justify-content: center;
-            gap: 20px;
-            font-size: 1.5rem;
+        /* 弹窗样式 */
+        .modal {
+            display: none; position: fixed; z-index: 100; left: 0; top: 0; width: 100%; height: 100%;
+            background-color: rgba(0,0,0,0.6); align-items: center; justify-content: center;
         }
+        .modal-content {
+            background-color: #fff; padding: 25px; border-radius: 20px;
+            max-width: 80%; text-align: center; position: relative;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.2);
+        }
+        .modal-content img { width: 100%; max-width: 250px; border-radius: 10px; margin-top: 10px; }
+        .close-btn { margin-top: 20px; color: #999; cursor: pointer; font-size: 0.85rem; }
     </style>
 </head>
 <body>
 
     <div class="container">
         <img src="avatar.png" alt="Avatar" class="profile-img">
-        
         <h1>My Links</h1>
-        
         <p class="bio">解决真实需求 ✨</p>
 
         <div class="links-container">
             <a href="wish.html" class="link-card featured" target="_blank">❤ 许愿池</a>
             
+            <div class="link-card trade-btn" onclick="openModal()">🤝 交易</div>
+
             <a href="https://reddit.com" class="link-card">💬 Reddit Community</a>
             <a href="#" class="link-card">📺 YouTube Channel</a>
         </div>
@@ -112,6 +69,24 @@
             © 2026 Your Brand
         </div>
     </div>
+
+    <div id="payModal" class="modal" onclick="closeModal()">
+        <div class="modal-content" onclick="event.stopPropagation()">
+            <h3 style="margin-top: 0;">确认交易</h3>
+            <p style="font-size: 0.85rem; color: #666;">请扫码完成操作</p>
+            <img src="pay.png" alt="交易收款码">
+            <div class="close-btn" onclick="closeModal()">[ 点击此处关闭 ]</div>
+        </div>
+    </div>
+
+    <script>
+        function openModal() {
+            document.getElementById('payModal').style.display = 'flex';
+        }
+        function closeModal() {
+            document.getElementById('payModal').style.display = 'none';
+        }
+    </script>
 
 </body>
 </html>
